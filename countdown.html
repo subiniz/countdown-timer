@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Countdown Timer</title>
+</head>
+<body>
+<form action="">
+  <input type="text" id="timer_value">
+  <input type="button" value="Start Countdown" onclick="countdown()">
+</form>
+<h1 id="timer"></h1>
+<script>
+
+    /**
+     * The below function uses the setInterval function to 
+     * generate a countdown timer that takes input from 
+     * the user as it's starting point.
+     **/
+    function countdown() {
+        let initValue = parseInt(document.getElementById('timer_value').value);
+
+        const timerElement = document.getElementById("timer");
+
+        const interval = setInterval(() => {
+        timerElement.innerHTML = initValue;
+        initValue--;
+
+        if (currentValue < 0) {
+            clearInterval(interval); // clearInterval terminates the interval loop
+        }
+        }, 1000); // time should be in miliseconds i.e., 1000 ms = 1 sec
+    }
+
+    /**
+     * The below function is same as the above one, except on every loop the starting number decreases by one.
+     **/
+    function decrementCountdown() {
+        let initValue = parseInt(document.getElementById('timer_value').value);
+        let currentValue = initValue;
+
+        const timerElement = document.getElementById("timer");
+
+        const interval = setInterval(() => {
+            timerElement.innerHTML = currentValue;
+            currentValue--;     
+
+            if (currentValue < 0) {
+                initValue--; 
+                currentValue = initValue; 
+                if (initValue <= 0) {
+                    clearInterval(interval);
+                }
+            }
+        }, 1000);
+    }
+</script>
+
+</body>
+</html>
